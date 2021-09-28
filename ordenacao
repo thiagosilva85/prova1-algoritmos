@@ -19,22 +19,21 @@ print(lista)
 tempo_inicio = time.time_ns()
 
 def sort(array):
-    
-    for index in range(0, len(array)):
-        min_index = index
+    for p in range(0, len(array)):
+        current_element = array[p]
 
-        for right in range(index + 1, len(array)):
-            if array[right] < array[min_index]:
-                min_index = right
+        while p > 0 and array[p - 1] > current_element:
+            array[p] = array[p - 1]
+            p -= 1
 
-        array[index], array[min_index] = array[min_index], array[index]
+        array[p] = current_element
 
 tempo_fim = time.time_ns()
 
 tempo = tempo_fim - tempo_inicio
     
 sort(lista)
-print('\nLista ordenada pelo método Selection Sort')
+print('\nLista ordenada pelo método Insertion Sort')
 print(lista)
 print('Gerada em ' + str(tempo) + 'ns\n')
 print('Pior caso: O(n^2)')

@@ -19,21 +19,30 @@ print(lista)
 tempo_inicio = time.time_ns()
 
 def sort(array):
-    for p in range(0, len(array)):
-        current_element = array[p]
+    sort_half(array, 0, len(array) - 1)
 
-        while p > 0 and array[p - 1] > current_element:
-            array[p] = array[p - 1]
-            p -= 1
 
-        array[p] = current_element
+def sort_half(array, start, end):
+    if start >= end:
+        return
+
+    middle = (start + end) // 2
+
+    sort_half(array, start, middle)
+    sort_half(array, middle + 1, end)
+
+    merge(array, start, end)
+
+
+def merge(array, start, end):
+    array[start: end + 1] = sorted(array[start: end + 1])
 
 tempo_fim = time.time_ns()
 
 tempo = tempo_fim - tempo_inicio
     
 sort(lista)
-print('\nLista ordenada pelo método Insertion Sort')
+print('\nLista ordenada pelo método MergeSort Sort')
 print(lista)
 print('Gerada em ' + str(tempo) + 'ns\n')
 print('Pior caso: O(n^2)')

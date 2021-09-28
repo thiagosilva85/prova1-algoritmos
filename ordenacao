@@ -1,0 +1,42 @@
+'''
+Análise de Algoritmos
+CIANM2C-CIA022-20212 - IESB SUL
+Professor Rodrigo Hagstrom
+27 de setembro
+
+PROVA 1
+Em duas liguagens de programação diferente (A e B – C e Python, por exemplo) três códigos de ordenação à sua escolha. Provar com Cálculo nos comentários à exemplo dos vídeos do MyCodeSchool se no pior caso há melhoria, ou não. Mostrar também o desempenho obtido no compilador de sua escolha.
+
+Desenvolvido por Thiago Silva (1922120026)
+'''
+# Importandos as libs usadas
+import time
+
+lista = [9,7,4,3,12,8,54,13,25,31,26]
+print('Lista original - desordenada')
+print(lista)
+
+tempo_inicio = time.time_ns()
+
+def sort(array):
+    
+    for index in range(0, len(array)):
+        min_index = index
+
+        for right in range(index + 1, len(array)):
+            if array[right] < array[min_index]:
+                min_index = right
+
+        array[index], array[min_index] = array[min_index], array[index]
+
+tempo_fim = time.time_ns()
+
+tempo = tempo_fim - tempo_inicio
+    
+sort(lista)
+print('\nLista ordenada pelo método Selection Sort')
+print(lista)
+print('Gerada em ' + str(tempo) + 'ns\n')
+print('Pior caso: O(n^2)')
+print('Caso médio: O(n^2)')
+print('Melhor caso: O(n)')
